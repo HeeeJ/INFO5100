@@ -5,6 +5,7 @@
 package ui;
 
 //import java.awt.Color;
+import javax.swing.JOptionPane;
 import model.ContactInfo;
 import model.Person;
 
@@ -272,9 +273,35 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPhoneNumKeyReleased
 
     private void btnSaveCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCreateActionPerformed
-        // TODO add your handling code here:
+
+        person.setName(txtName.getText());
+        person.setAge(Integer.parseInt(txtAge.getText()));
+        person.setContactInfo(txtPhoneNum.getText(), txtEmail.getText());
+        person.setEmployeeId(txtEmpId.getText());
+        person.setGender(getGender());
+        person.setLevel(txtLevel.getText());
+        //person.setPhoto(photo);
+        person.setPositionTitle(txtTitle.getText());
+        person.setStartDate(txtDate.getText());
+        person.setTeamInfo(txtTeamInfo.getText());
+        
+        //Show success message
+        JOptionPane.showMessageDialog(this, "Producnt Information Saved");
     }//GEN-LAST:event_btnSaveCreateActionPerformed
-    
+    /** *
+     * Get gender from ratio button group.
+     * @return gender String type
+     */
+    String getGender(){
+        if(btnMale.isSelected())
+            return "Male";
+        else if(btnFemale.isSelected())
+            return "Female";
+        else if(btnNotSay.isSelected())
+            return "Prefer not to say";
+        else 
+            return null;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnFemale;

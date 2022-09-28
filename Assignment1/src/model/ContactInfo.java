@@ -10,15 +10,15 @@ package model;
  */
 public class ContactInfo {
     
-    private String cellPhoneNum;
+    private String phoneNum;
     private String email;
 
-    public String getCellPhoneNum() {
-        return cellPhoneNum;
+    public String getphoneNum() {
+        return phoneNum;
     }
 
-    public void setCellPhoneNum(String cellPhoneNum) {
-        this.cellPhoneNum = cellPhoneNum;
+    public void setphoneNum(String cellPhoneNum) {
+        this.phoneNum = cellPhoneNum;
     }
 
     public String getEmail() {

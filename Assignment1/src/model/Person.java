@@ -13,22 +13,22 @@ import java.util.Date;
  */
 public class Person {
     
-    private int employeeId;
+    private String employeeId;
     private String name;
     private int age;
     private String gender;
-    private Date startDate;
+    private String startDate;
     private String level;
     private String teamInfo;
     private String positionTitle;
     private ContactInfo contactInfo;
     private Image photo;
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -56,11 +56,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -94,6 +94,11 @@ public class Person {
 
     public void setContactInfo(ContactInfo contactInfo) {
         this.contactInfo = contactInfo;
+    }
+    
+    public void setContactInfo(String phoneNum, String email){
+        this.contactInfo.setphoneNum(phoneNum);
+        this.contactInfo.setEmail(email);
     }
 
     public Image getPhoto() {
