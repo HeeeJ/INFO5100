@@ -6,8 +6,8 @@ package ui;
 
 //import java.awt.Color;
 import javax.swing.JOptionPane;
-import model.ContactInfo;
 import model.Person;
+import model.PersonRecord;
 
 /**
  *
@@ -18,13 +18,11 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    Person person;
-    ContactInfo contactInfo;
+    PersonRecord record;
     
-    public CreateJPanel(Person person, ContactInfo contactInfo) {
+    public CreateJPanel(PersonRecord record) {
         initComponents();
-        this.person = person;
-        this.contactInfo = contactInfo;
+        this.record = record;
     }
 
     /**
@@ -274,19 +272,47 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCreateActionPerformed
 
-        person.setName(txtName.getText());
-        person.setAge(Integer.parseInt(txtAge.getText()));
-        person.setContactInfo(txtPhoneNum.getText(), txtEmail.getText());
-        person.setEmployeeId(txtEmpId.getText());
-        person.setGender(getGender());
-        person.setLevel(txtLevel.getText());
+        String name = txtName.getText();
+        String age =txtAge.getText();
+        String email = txtEmail.getText();
+        String phoneNum = txtPhoneNum.getText();
+        String empId = txtEmpId.getText();
+        String gender = getGender();
+        String level = txtLevel.getText();
+        String title = txtTitle.getText();
+        String date = txtDate.getText();
+        String teamInfo = txtTeamInfo.getText();
         //person.setPhoto(photo);
-        person.setPositionTitle(txtTitle.getText());
-        person.setStartDate(txtDate.getText());
-        person.setTeamInfo(txtTeamInfo.getText());
+        Person ps = record.addNewPerson();
+        
+        ps.setAge(age);
+        ps.setEmail(email);
+        ps.setEmployeeId(empId);
+        ps.setGender(gender);
+        ps.setLevel(level);
+        ps.setName(name);
+        ps.setPhoneNum(phoneNum);
+        //ps.setPhoto(photo);
+        ps.setPositionTitle(title);
+        ps.setStartDate(date);
+        ps.setTeamInfo(teamInfo);
         
         //Show success message
-        JOptionPane.showMessageDialog(this, "Producnt Information Saved");
+        JOptionPane.showMessageDialog(this, "Person Information Saved");
+        
+        /**
+         * Reset all blankets.
+         */
+        txtName.setText("");
+        txtAge.setText("");
+        txtDate.setText("");
+        txtEmail.setText("");
+        txtEmpId.setText("");
+        txtLevel.setText("");
+        txtPhoneNum.setText("");
+        txtTeamInfo.setText("");
+        txtTitle.setText("");
+        btnGrpGender.clearSelection();
     }//GEN-LAST:event_btnSaveCreateActionPerformed
     /** *
      * Get gender from ratio button group.

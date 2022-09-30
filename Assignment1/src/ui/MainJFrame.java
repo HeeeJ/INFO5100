@@ -4,8 +4,8 @@
  */
 package ui;
 
-import model.ContactInfo;
 import model.Person;
+import model.PersonRecord;
 
 /**
  *
@@ -18,13 +18,13 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     
     Person person;
-    ContactInfo contactInfo;
+    PersonRecord records;
     
     public MainJFrame() {
         initComponents();
         
+        records = new PersonRecord();
         person = new Person();
-        contactInfo = new ContactInfo();
     }
 
     /**
@@ -103,11 +103,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(splitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(splitPane)
         );
 
         pack();
@@ -115,13 +115,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
 
-        CreateJPanel createPanel = new CreateJPanel(person,contactInfo);
+        CreateJPanel createPanel = new CreateJPanel(records);
         splitPane.setRightComponent(createPanel);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        ViewJPanel viewPanel = new ViewJPanel(person,contactInfo);
+        ViewJPanel viewPanel = new ViewJPanel(records);
         splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_btnViewActionPerformed
 

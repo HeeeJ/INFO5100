@@ -12,23 +12,28 @@ import java.util.ArrayList;
  * @author jiaf
  */
 public class PersonRecord {
-
-    public ArrayList<Person> getRecords() {
-        return person;
-    }
-
-    public void setRecords(ArrayList<Person> records) {
-        this.person = records;
-    }
-    private ArrayList<Person> person;
+    
+    private ArrayList<Person> record;
     
     public PersonRecord(){
-        this.person = new ArrayList<>();
+        this.record = new ArrayList<>();
     }
-    public void addNewPerson (Person pers){
-        this.person.add(pers);
+
+    public ArrayList<Person> getRecord() {
+        return record;
+    }
+
+    public void setRecord(ArrayList<Person> record) {
+        this.record = record;
+    }
+
+
+    public Person addNewPerson (){
+        Person newPerson = new Person();
+        record.add(newPerson);
+        return newPerson;
     }
     public void deletePerson (Person pers){
-        this.person.remove(pers);
+        this.record.remove(pers);
     }
 }

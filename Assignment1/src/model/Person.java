@@ -5,7 +5,6 @@
 package model;
 
 import java.awt.Image;
-import java.util.Date;
 
 /**
  *
@@ -15,14 +14,15 @@ public class Person {
     
     private String employeeId;
     private String name;
-    private int age;
+    private String age;
     private String gender;
     private String startDate;
     private String level;
     private String teamInfo;
-    private String positionTitle;
-    private ContactInfo contactInfo;
-    private Image photo;
+    private String positionTitle;    
+    private String phoneNum;
+    private String email;
+    private String photo;
 
     public String getEmployeeId() {
         return employeeId;
@@ -40,11 +40,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -88,26 +88,32 @@ public class Person {
         this.positionTitle = positionTitle;
     }
 
-    public ContactInfo getContactInfo() {
-        return contactInfo;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-    
-    public void setContactInfo(String phoneNum, String email){
-        this.contactInfo.setphoneNum(phoneNum);
-        this.contactInfo.setEmail(email);
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public Image getPhoto() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Image photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
     
-    
+    @Override
+    public String toString(){
+        return name;
+    }
 }
