@@ -117,4 +117,10 @@ public class Person {
         return name;
     }
     
+    public String toStringAll(){
+        return employeeId+name+age+gender+
+                startDate+level+teamInfo+
+                positionTitle+phoneNum+email;
+    }
+    
 }

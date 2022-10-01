@@ -32,12 +32,12 @@ public class CreateJPanel extends javax.swing.JPanel {
     public CreateJPanel(PersonRecord record) {
         initComponents();
         
-        
+        //show white picture initially
         ImageIcon photo = new ImageIcon(new ImageIcon("images/null.jpg").getImage().getScaledInstance(110,130, Image.SCALE_SMOOTH));
         lblPhoto.setIcon(photo);
         this.record = record;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -298,17 +298,14 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPhoneNumActionPerformed
 
     private void txtPhoneNumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumKeyReleased
-       
-//        String phoneNum = txtPhoneNum.getText();
-//        if ( phoneNum.matches("^[0-9]*$") && phoneNum.length() == 10){
-//            txtPhoneNum.setBackground(Color.GREEN);
-//        }
-//        else
-//            txtPhoneNum.setBackground(Color.RED);
+
     }//GEN-LAST:event_txtPhoneNumKeyReleased
 
     private void btnSaveCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCreateActionPerformed
 
+         /**
+         * Store new record.
+         */
         String name = txtName.getText();
         String age =txtAge.getText();
         String email = txtEmail.getText();
@@ -355,6 +352,8 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveCreateActionPerformed
 
     private void btnPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhotoActionPerformed
+        
+        //Add file chooser (Only ".jpg" and ".png" are allowed).
         JFileChooser file_upload = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & PNG Images", "jpg", "png");
@@ -363,7 +362,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         int res = file_upload.showOpenDialog(null);
         
         if(res == JFileChooser.APPROVE_OPTION){
-            
+            //Show selected photo and save photo path.
             File file_path = new File(file_upload.getSelectedFile().getAbsolutePath());
             photo_path = file_path.toString();                
             ImageIcon photo = new ImageIcon(new ImageIcon(photo_path).getImage().getScaledInstance(110, 130, Image.SCALE_SMOOTH));

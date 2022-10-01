@@ -42,6 +42,7 @@ public class EditJFrame extends javax.swing.JFrame {
         showDetails();
         
     }
+    //Enable all text field to edit.
     public void setTxtEditable(){
         txtAge.setEditable(true);
         txtDate.setEditable(true);
@@ -58,6 +59,7 @@ public class EditJFrame extends javax.swing.JFrame {
         btnPhoto.setEnabled(true);
     }
     
+    //Show selected person details
     public void showDetails(){       
         
         txtName.setText(selectedPerson.getName());
@@ -98,6 +100,7 @@ public class EditJFrame extends javax.swing.JFrame {
         
     }
     
+    //Get gender from group button
     String getGender(){
         if(btnMale.isSelected())
             return "Male";
@@ -373,12 +376,6 @@ public class EditJFrame extends javax.swing.JFrame {
 
     private void txtPhoneNumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumKeyReleased
 
-        //        String phoneNum = txtPhoneNum.getText();
-        //        if ( phoneNum.matches("^[0-9]*$") && phoneNum.length() == 10){
-            //            txtPhoneNum.setBackground(Color.GREEN);
-            //        }
-        //        else
-        //            txtPhoneNum.setBackground(Color.RED);
     }//GEN-LAST:event_txtPhoneNumKeyReleased
 
     private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
@@ -401,7 +398,8 @@ public class EditJFrame extends javax.swing.JFrame {
         setTxtEditable();
         btnSave.setEnabled(true);        
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    
+    //save new informations
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
         record.deletePerson(selectedPerson);
@@ -434,7 +432,11 @@ public class EditJFrame extends javax.swing.JFrame {
         //Show success message
         JOptionPane.showMessageDialog(this, "Person Information Updated.");
         btnSave.setEnabled(false);
-        btnPhoto.setEnabled(false);        // TODO add your handling code here:
+        btnPhoto.setEnabled(false);
+        btnMale.setEnabled(false);
+        btnFemale.setEnabled(false);
+        btnNotSay.setEnabled(false);
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhotoActionPerformed

@@ -4,6 +4,7 @@
  */
 package ui;
 
+import java.util.ArrayList;
 import model.Person;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,12 +21,13 @@ public class ViewJPanel extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     PersonRecord record;
-
+    
     
     public ViewJPanel(PersonRecord record) {
         initComponents();
         this.record = record;
-        
+        //Set the table cannot be edited.
+        tblPerson.setDefaultEditor(Object.class, null);
         //displayPerson();
         populateTable();
     }
@@ -46,6 +48,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
 
         lblTitle.setFont(new java.awt.Font("STHeiti", 1, 14)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,6 +95,12 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +116,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelete)
@@ -128,7 +138,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnView)
-                    .addComponent(btnSearch))
+                    .addComponent(btnSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -152,6 +163,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         editJFrame.setVisible(true);
     }//GEN-LAST:event_btnViewActionPerformed
 
+    //Delete selected person record.
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRowIndex = tblPerson.getSelectedRow();
         if (selectedRowIndex < 0){
@@ -169,11 +181,35 @@ public class ViewJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    //Search persons by keyword
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-
         
+        String schContent = txtSearch.getText();
+        
+        //store all person records contained search keys in an ArrayList
+        ArrayList<Person> result = new ArrayList<Person>();
+        for(Person ps : record.getRecord()){
+            if(ps.toStringAll().contains(schContent)){
+                result.add(ps);
+            }
+        }
+        
+        //show search result in table
+        DefaultTableModel model = (DefaultTableModel) tblPerson.getModel();
+        model.setRowCount(0);
+        
+        for(Person ps : result){
+            
+            Object [] row = new Object[3];
+            row[0] = ps;
+            row[1] = ps.getEmployeeId();
+            row[2] = ps.getAge();
+            
+            model.addRow(row);
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
-
+    
+    //Refresh table    
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblPerson.getModel();
         model.setRowCount(0);
@@ -188,10 +224,11 @@ public class ViewJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
     
-//    public Person find(String srhContent) {
-//    
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -201,6 +238,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblPerson;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
 
